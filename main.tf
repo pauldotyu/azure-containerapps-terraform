@@ -65,9 +65,9 @@ resource "azurerm_log_analytics_workspace" "aca" {
 }
 
 # https://registry.terraform.io/providers/Azure/azapi/latest/docs
-
+# https://docs.microsoft.com/en-us/azure/templates/microsoft.app/2022-03-01/managedenvironments?tabs=bicep
 resource "azapi_resource" "aca_env" {
-  type      = "Microsoft.App/managedEnvironments@2022-03-01" # https://docs.microsoft.com/en-us/azure/templates/microsoft.app/2022-03-01/managedenvironments?tabs=bicep
+  type      = "Microsoft.App/managedEnvironments@2022-03-01" 
   name      = "env-${local.resource_name}"
   parent_id = azurerm_resource_group.aca.id
   location  = azurerm_resource_group.aca.location
@@ -85,8 +85,9 @@ resource "azapi_resource" "aca_env" {
   })
 }
 
+#https://docs.microsoft.com/en-us/azure/templates/microsoft.app/2022-03-01/containerapps?tabs=bicep
 resource "azapi_resource" "hello" {
-  type      = "Microsoft.App/containerApps@2022-03-01" #https://docs.microsoft.com/en-us/azure/templates/microsoft.app/2022-03-01/containerapps?tabs=bicep
+  type      = "Microsoft.App/containerApps@2022-03-01" 
   name      = "hello-service"
   parent_id = azurerm_resource_group.aca.id
   location  = azurerm_resource_group.aca.location
@@ -119,8 +120,9 @@ resource "azapi_resource" "hello" {
   })
 }
 
+#https://docs.microsoft.com/en-us/azure/templates/microsoft.app/2022-03-01/containerapps?tabs=bicep
 resource "azapi_resource" "world" {
-  type      = "Microsoft.App/containerApps@2022-03-01" #https://docs.microsoft.com/en-us/azure/templates/microsoft.app/2022-03-01/containerapps?tabs=bicep
+  type      = "Microsoft.App/containerApps@2022-03-01" 
   name      = "world-service"
   parent_id = azurerm_resource_group.aca.id
   location  = azurerm_resource_group.aca.location
@@ -153,8 +155,9 @@ resource "azapi_resource" "world" {
   })
 }
 
+#https://docs.microsoft.com/en-us/azure/templates/microsoft.app/2022-03-01/containerapps?tabs=bicep
 resource "azapi_resource" "greeting" {
-  type      = "Microsoft.App/containerApps@2022-03-01" #https://docs.microsoft.com/en-us/azure/templates/microsoft.app/2022-03-01/containerapps?tabs=bicep
+  type      = "Microsoft.App/containerApps@2022-03-01" 
   name      = "greeting-service"
   parent_id = azurerm_resource_group.aca.id
   location  = azurerm_resource_group.aca.location
