@@ -20,3 +20,33 @@ To test the app:
 - Navigate to your `greeting-service` container app in the Azure Portal
 - Locate and copy the ingress URL
 - Paste the `greeting-service` ingress URL to a browser widow and append `/greet` to the end
+
+To configure CI/CD with GitHub Actions:
+
+- Create a new service principal
+
+  ```sh
+  az ad sp create-for-rbac \
+  --name <SERVICE_PRINCIPAL_NAME> \
+  --role "contributor" \
+  --scopes /subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<RESOURCE_GROUP_NAME> \
+  --sdk-auth
+  ```
+
+- Link your container app with your GitHub repo (run this for each container app)
+
+  ```sh
+  az containerapp github-action add \
+  --repo-url "https://github.com/<OWNER>/<REPOSITORY_NAME>" \
+  --context-path <DOCKERFILE_PATH> \
+  --branch <BRANCH_NAME> \
+  --name <CONTAINER_APP_NAME> \
+  --resource-group <RESOURCE_GROUP> \
+  --registry-url <URL_TO_CONTAINER_REGISTRY> \
+  --registry-username <REGISTRY_USER_NAME> \
+  --registry-password <REGISTRY_PASSWORD> \
+  --service-principal-client-id <CLIENT_ID> \
+  --service-principal-client-secret <CLIENT_SECRET> \
+  --service-principal-tenant-id <TENANT_ID> \
+  --login-with-github
+  ```

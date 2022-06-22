@@ -205,3 +205,9 @@ resource "azapi_resource" "greeting" {
 output "ingress_url" {
   value = format("%s%s%s", "https://", jsondecode(azapi_resource.greeting.output).properties.configuration.ingress.fqdn, "/greet")
 }
+
+output "resource_group_id" {
+  value = azurerm_resource_group.aca.id
+}
+
+// todo: https://registry.terraform.io/providers/hashicorp/azuread/latest/docs/resources/service_principal
