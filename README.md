@@ -9,19 +9,19 @@ For this demo, you can refer to the following Bicep docs for provisioning Azure 
 - https://docs.microsoft.com/en-us/azure/templates/microsoft.app/2022-03-01/managedenvironments?tabs=bicep
 - https://docs.microsoft.com/en-us/azure/templates/microsoft.app/2022-03-01/containerapps?tabs=bicep
 
-To run this demo:
+## Run this demo:
 
 - Make sure you have the Terraform CLI installed
 - Run `terraform init` to initialize the directory
 - Run `terraform apply`
 
-To test the app:
+## Test the app:
 
 - Navigate to your `greeting-service` container app in the Azure Portal
 - Locate and copy the ingress URL
 - Paste the `greeting-service` ingress URL to a browser widow and append `/greet` to the end
 
-To configure CI/CD with GitHub Actions:
+## Configure CI/CD with GitHub Actions:
 
 - Create a new service principal
 
@@ -50,3 +50,13 @@ To configure CI/CD with GitHub Actions:
   --service-principal-tenant-id <TENANT_ID> \
   --login-with-github
   ```
+
+## Troubleshooting Tips
+
+- If you encounter an error on delete with the following error message:
+
+  ```text
+  │ Error: deleting "Resource: (ResourceId \"/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/rg-dynamicamoeba/providers/Microsoft.App/managedEnvironments/env-dynamicamoeba\" / Api Version \"2022-03-01\")": missing error information
+  ```
+
+  You need to go and check to make sure you did not manually create a container app in the managed environment outside of Terraform. If you did, you need to manually delete the container app.
